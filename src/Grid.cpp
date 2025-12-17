@@ -20,7 +20,7 @@ bool Grid::move(Direction dir) {
                 if (tiles[i][j] != nullptr) {
                     if (j != target) {
                         tiles[i][target] = tiles[i][j];
-                        tiles[i][target]->setPosition(i, target); // mise à jour
+                        tiles[i][target]->setPosition(i, target); // upload
                         tiles[i][j] = nullptr;
                         moved = true;
                     }
@@ -37,7 +37,7 @@ bool Grid::move(Direction dir) {
                 if (tiles[i][j] != nullptr) {
                     if (j != target) {
                         tiles[i][target] = tiles[i][j];
-                        tiles[i][target]->setPosition(i, target); // mise à jour
+                        tiles[i][target]->setPosition(i, target); // upload
                         tiles[i][j] = nullptr;
                         moved = true;
                     }
@@ -54,7 +54,7 @@ bool Grid::move(Direction dir) {
                 if (tiles[i][j] != nullptr) {
                     if (i != target) {
                         tiles[target][j] = tiles[i][j];
-                        tiles[target][j]->setPosition(target, j); // mise à jour
+                        tiles[target][j]->setPosition(target, j); // upload
                         tiles[i][j] = nullptr;
                         moved = true;
                     }
@@ -71,7 +71,7 @@ bool Grid::move(Direction dir) {
                 if (tiles[i][j] != nullptr) {
                     if (i != target) {
                         tiles[target][j] = tiles[i][j];
-                        tiles[target][j]->setPosition(target, j); // mise à jour
+                        tiles[target][j]->setPosition(target, j); // upload
                         tiles[i][j] = nullptr;
                         moved = true;
                     }
@@ -139,14 +139,29 @@ void Grid::addRandomTile() {
 
 void Grid::render(SDL_Renderer* renderer) const {
     int cellSize = 100;
+
+    int winW, winH;
+    SDL_GetRenderOutputSize(renderer, &winW, &winH);
+
+    int gridW = 4 * cellSize;
+    int gridH = 4 * cellSize;
+
+    int offsetX = (winW - gridW) / 2;
+    int offsetY = (winH - gridH) / 2;
+
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            SDL_FRect rect { j * cellSize, i * cellSize, cellSize, cellSize };
+            SDL_FRect rect { 
+                static_cast<float>(offsetX + j * cellSize), //X
+                static_cast<float>(offsetY + i * cellSize), //Y
+                static_cast<float>(cellSize), // weight
+                static_cast<float>(cellSize) //height
+            };
 
             if (tiles[i][j] != nullptr) {
-                SDL_SetRenderDrawColor(renderer, 255, 200, 0, 255); // jaune
+                SDL_SetRenderDrawColor(renderer, 255, 200, 0, 255); // yellow
             } else {
-                SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255); // gris
+                SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255); // gray
             }
             SDL_RenderFillRect(renderer, &rect);
         }

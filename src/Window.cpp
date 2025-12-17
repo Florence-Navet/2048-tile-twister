@@ -34,7 +34,7 @@ void Window::handleEvents() {
             running = false;
         }
         else if (event.type == SDL_EVENT_KEY_DOWN) {
-            SDL_Keycode key = event.key.key;  // SDL3 : champ correct
+            SDL_Keycode key = event.key.key;  
             switch (key) {
             case SDLK_LEFT:
                 game.move(Direction::LEFT);
