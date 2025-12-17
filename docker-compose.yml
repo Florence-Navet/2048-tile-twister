@@ -1,5 +1,5 @@
 services:
-  sdl2-windows:
+  windows:
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
       - PROJECT_NAME=2048
     command: ["./build.sh"]
     
-  sdl2-linux:
+  linux:
     build:
       context: .
       dockerfile: Dockerfile
