@@ -1,6 +1,7 @@
 #include <SDL3/SDL.h>
 
 #include <iostream>
+#include "Grid.hpp"
 
 int main() {
     // INIT SDL
@@ -11,7 +12,7 @@ int main() {
 
     // CREATE WINDOW
     SDL_Window* window = SDL_CreateWindow(
-        "Hello 2048",               
+        "2048 - Tile Twister",               
         640,                        
         480,                        
         SDL_WINDOW_RESIZABLE        // options
@@ -22,6 +23,9 @@ int main() {
         SDL_Quit();
         return -1;
     }
+
+ 
+
     //CREATE RENDERER
     SDL_Renderer* renderer = SDL_CreateRenderer(window, nullptr);
     if (!renderer) {
@@ -30,6 +34,10 @@ int main() {
         SDL_Quit();
         return -1;
     }
+
+    Grid grid;
+    grid.addRandomTile();
+    grid.addRandomTile();
 
     bool running = true;
     SDL_Event event;
@@ -40,9 +48,26 @@ int main() {
             }
         }
 
+       
+     
+        SDL_SetRenderDrawColor(renderer, 200, 200, 255, 255);
+        SDL_RenderClear(renderer);
+
+        grid.render(renderer);
+
+    
+        // SDL_FRect tile1 { 50, 50, 100, 100 };
+        // SDL_SetRenderDrawColor(renderer, 255, 200, 0, 255);
+        // SDL_RenderFillRect(renderer, &tile1);
+
+       
+        // SDL_FRect tile2 { 200, 200, 100, 100 };
+        // SDL_SetRenderDrawColor(renderer, 255, 100, 0, 255);
+        // SDL_RenderFillRect(renderer, &tile2);
+
            //CHANGE BACKGROUND COLOR
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-    SDL_RenderClear(renderer);
+    // SDL_SetRenderDrawColor(renderer, 200, 200, 255, 255);
+
 
     SDL_RenderPresent(renderer);
     }

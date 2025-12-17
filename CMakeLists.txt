@@ -9,7 +9,11 @@ include_directories(${CMAKE_SOURCE_DIR}/SDL3/include)
 # Lier SDL3 (libs VC)
 link_directories(${CMAKE_SOURCE_DIR}/SDL3/lib/x64)
 
-add_executable(HelloWorld src/main.cpp)
+add_executable(HelloWorld    
+    src/main.cpp
+    src/Tile.cpp
+    src/Grid.cpp
+)
 
 # Lier SDL3
 target_link_libraries(HelloWorld
