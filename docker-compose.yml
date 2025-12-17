@@ -13,6 +13,7 @@ services:
     environment:
       - TARGET_PLATFORM=windows
       - PROJECT_NAME=2048
+    command: ["./build.sh"]
     
   sdl2-linux:
     build:
@@ -28,3 +29,4 @@ services:
     environment:
       - TARGET_PLATFORM=linux
       - PROJECT_NAME=2048
+    command: ["./build.sh"]

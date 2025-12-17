@@ -51,7 +51,7 @@ RUN if [ "$TARGET_PLATFORM" = "windows" ]; then \
 WORKDIR /app
 
 # Build script
-COPY build.sh /build.sh
-RUN chmod +x /build.sh
+COPY build.sh ./build.sh
+RUN chmod +x ./build.sh
 
-CMD ["/build.sh"]
+# CMD ["/build.sh"]
