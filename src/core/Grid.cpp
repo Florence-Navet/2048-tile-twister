@@ -1,4 +1,4 @@
-#include "Grid.hpp"
+#include "grid.hpp"
 #include <cstdlib>
 #include <ctime>
 

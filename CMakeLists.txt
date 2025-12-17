@@ -16,10 +16,10 @@ find_package(SDL3 REQUIRED)
 
 # Create executable
 add_executable(${PROJECT_NAME} src/main.cpp
-    src/Tile.cpp
-    src/Grid.cpp
-    src/Window.cpp
-    src/Game.cpp
+    src/core/tile.cpp
+    src/core/grid.cpp
+    src/views/window.cpp
+    src/core/game.cpp
 )
 
 # Link SDL3

@@ -1,7 +1,7 @@
 #include <SDL3/SDL.h>
 
 #include <iostream>
-#include "Window.hpp"
+#include "views/Window.hpp"
 
 int main() {
     Window window;
