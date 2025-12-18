@@ -13,9 +13,7 @@ bool Grid::move(Direction dir) {
 
   slideTiles(dir, moved);
   mergeTiles(dir);
-
-  // 3. Slide again to fill gaps from merges
-  slideTiles(dir, moved);
+  slideTiles(dir, moved); // Slide again to fill gaps from merges
 
   return moved;
 }
@@ -132,12 +130,6 @@ bool Grid::canMerge() const {
 }
 
 bool Grid::canMove() const {
-  // Case vide ?
-  // bool empty = isCellEmpty();
-  // if (isCellEmpty()) {
-  //   return true;
-  // }
-  // return canMerge();
   return isCellEmpty() || canMerge();
 }
 

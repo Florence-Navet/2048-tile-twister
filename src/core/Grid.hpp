@@ -15,6 +15,10 @@ class Grid {
   void slideRight(bool& moved);
   void slideUp(bool& moved);
   void slideDown(bool& moved);
+  void mergeLeft();
+  void mergeRight();
+  void mergeUp();
+  void mergeDown();
 
  public:
   Grid();
@@ -22,14 +26,8 @@ class Grid {
   bool isCellEmpty() const;
   bool canMerge() const;
   bool canMove() const;
-  void mergeLeft();
-  void mergeRight();
-  void mergeUp();
-  void mergeDown();
-  void mergeTiles(Direction dir);
   void addTile(Tile* tile);
   void addRandomTile();
   Tile* getTile(int i, int j) const { return tiles[i][j]; }
-  // void render(SDL_Renderer* renderer) const; // rendering is now handled by
-  // GridView
+  void mergeTiles(Direction dir);
 };
