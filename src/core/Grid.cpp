@@ -218,7 +218,7 @@ void Grid::addTile(Tile* tile) {
 }
 
 void Grid::addRandomTile() {
-  auto emptyCells = getEmptyCells();
+  std::vector<std::pair<int, int>> emptyCells = getEmptyCells();
   
   if (!emptyCells.empty()) {
     static bool seeded = false;
@@ -226,8 +226,11 @@ void Grid::addRandomTile() {
       std::srand(static_cast<unsigned int>(std::time(nullptr)));
       seeded = true;
     }
+
+    std::pair<int, int> randomCell = emptyCells[std::rand() % emptyCells.size()];
+    int i = randomCell.first;
+    int j = randomCell.second;
     
-    auto [i, j] = emptyCells[std::rand() % emptyCells.size()];
     int val = (std::rand() % 10 < 9) ? 2 : 4;
     tiles[i][j] = std::make_unique<Tile>(val, i, j);
   }
