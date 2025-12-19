@@ -16,12 +16,16 @@ class Window {
   GridView* gridView;
   bool running;
 
+  void renderMessage(const std::string& message); 
+
  public:
   Window();
   ~Window();
-  void init();            ///< Initialize SDL, SDL_ttf, and game state
-  void render();          ///< Render the current game state
-  void handleEvents();    ///< Handle SDL events (keyboard, quit, etc.)
-  void loop();            ///< Main application/game loop
-  void updateGridView();  ///< Update the GridView from the current Grid state
+  void init();
+  void render();
+  void handleEvents();
+  void loop();
+  void updateGridView();
+  void restartGame();
+
 };

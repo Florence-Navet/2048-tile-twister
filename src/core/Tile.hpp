@@ -7,12 +7,12 @@ class Tile {
   int x;
   int y;
 
- public:
-  Tile(int v, int posX, int posY);
-  int getValue() const;
-  std::pair<int, int> getPosition() const;
-  void setPosition(int newX, int newY);
-  void setValue(int v) { value = v; }
+public:
+    Tile(int v, int posX, int posY);
+     int getValue()const;
+     void setValue(int newVal); 
+     std::pair<int, int> getPosition() const;
+     void setPosition(int newX, int newY);
 
   // int getValue() const { return value; }
   // int getX() const { return x; }
