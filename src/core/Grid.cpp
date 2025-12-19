@@ -159,7 +159,7 @@ void Grid::addRandomTile() {
   }
 }
 
-// rendering is now handled by GridView
+
 
 void Grid::mergeLeft() {
   for (int i = 0; i < 4; i++) {

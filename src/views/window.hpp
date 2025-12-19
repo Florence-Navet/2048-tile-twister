@@ -4,6 +4,10 @@
 #include "../core/game.hpp"
 #include "gridView.hpp"
 
+   /**
+   * @class Window
+   * @brief Main application window and event/render loop for 2048 game.
+   */
 class Window {
  private:
   SDL_Window* window;
@@ -11,6 +15,8 @@ class Window {
   Game game;
   GridView* gridView;
   bool running;
+
+  void renderMessage(const std::string& message); 
 
  public:
   Window();
@@ -20,4 +26,6 @@ class Window {
   void handleEvents();
   void loop();
   void updateGridView();
+  void restartGame();
+
 };
