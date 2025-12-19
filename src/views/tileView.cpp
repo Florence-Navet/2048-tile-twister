@@ -9,20 +9,20 @@ TileView::TileView(int x, int y, int width, int height, int value)
     : GameObject(x, y, width, height), value(value) {}
 
 void TileView::setValue(int newValue) { this->value = newValue; }
-int TileView::getValue() { return this->value; }
+int TileView::getValue() const { return this->value; }
 
 void TileView::render(SDL_Renderer* renderer) {
   // Draw tile rectangle
   SDL_FRect rect = {static_cast<float>(x), static_cast<float>(y),
                     static_cast<float>(width), static_cast<float>(height)};
-  SDL_SetRenderDrawColor(renderer, 200, 180, 140, 255);  // Example color
+  SDL_SetRenderDrawColor(renderer, 200, 180, 140, 255);  // tile color
   SDL_RenderFillRect(renderer, &rect);
   SDL_SetRenderDrawColor(renderer, 120, 110, 90, 255);
   SDL_RenderRect(renderer, &rect);
 
   // Draw value as text (requires SDL_ttf)
   if (value > 0) {
-    TTF_Font* font = TTF_OpenFont("./assets/Roboto-Bold.ttf", height / 2);
+    TTF_Font* font = TTF_OpenFont("./assets/Roboto-Bold.ttf", height / 3);
     if (!font) {
       std::cerr << "Failed to load font: " << SDL_GetError() << std::endl;
     }
