@@ -110,12 +110,7 @@ bool Grid::canMerge() const {
 }
 
 bool Grid::canMove() const {
-  // Case vide ?
-  // bool empty = isCellEmpty();
-  // if (isCellEmpty()) {
-  //   return true;
-  // }
-  // return canMerge();
+
   return isCellEmpty() || canMerge();
 }
 
@@ -127,25 +122,35 @@ void Grid::addTile(Tile* tile) {
   }
 }
 
+
+
 void Grid::addRandomTile() {
   std::vector<std::pair<int, int>> emptyCells;
+
   for (int i = 0; i < 4; i++) {
     for (int j = 0; j < 4; j++) {
       if (tiles[i][j] == nullptr) {
-        emptyCells.push_back({i, j});
+        emptyCells.push_back(std::pair<int, int>(i, j));
       }
     }
   }
 
   if (!emptyCells.empty()) {
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    auto [i, j] = emptyCells[std::rand() % emptyCells.size()];
+
+    std::pair<int, int> cell =
+        emptyCells[std::rand() % emptyCells.size()];
+
+    int i = cell.first;
+    int j = cell.second;
+
     int val = (std::rand() % 2 == 0) ? 2 : 4;
     tiles[i][j] = new Tile(val, i, j);
   }
 }
 
-// rendering is now handled by GridView
+
+
 
 void Grid::moveLeft() {
   for (int i = 0; i < 4; i++) {
