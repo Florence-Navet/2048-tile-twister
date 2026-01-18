@@ -85,53 +85,70 @@ docker-compose up
 ```mermaid
 classDiagram
 	class Game {
-		-Grid grid
-		+void move(Direction)
-		+void addRandomTile()
-		+bool isGameOver()
+		- Grid grid
+		+ void setGrid(Grid&&)
+		+ void move(Direction)
+		+ void addRandomTile()
+		+ bool isGameOver() const
+		+ bool hasWon() const
+		+ Grid& getGrid()
 	}
+
 	class Grid {
-		-Tile[4][4] tiles
-		+bool move(Direction)
-		+bool canMove()
-		+void mergeTiles(Direction)
-		+void addTile(Tile)
+		- std::unique_ptr<Tile>[4][4] tiles
+		- void slideTiles(Direction,bool&)
+		+ bool move(Direction)
+		+ void mergeTiles(Direction)
+		+ void addRandomTile()
 	}
+
 	class Tile {
-		-int value
-		-int x
-		-int y
-		+int getValue()
-		+(x, y) getPosition()
+		- int value
+		- int x
+		- int y
+		- bool merged
+		+ void doubleValue()
+		+ std::pair<int,int> getPosition() const
+		+ void setPosition(int,int)
+		+ bool canMergeWith(const Tile*) const
 	}
+
 	class Window {
-		+void init()
-		+void render()
-		+void handleEvents()
+		- SDL_Window* window
+		- SDL_Renderer* renderer
+		- Game game
+		- GridView* gridView
+		- bool running
+		+ void init()
+		+ void handleEvents()
+		+ void loop()
+		+ void updateGridView()
+		+ void restartGame()
 	}
+
 	class GameObject {
 		<<abstract>>
-		-int x
-		-int y
-		-int width
-		-int height
-		+virtual void render()
+		- int x
+		- int y
+		- int width
+		- int height
+		+ virtual void render(SDL_Renderer*)
 	}
+
 	class TileView {
-		+void render()
+		+ void setValue(int)
+		+ int getValue() const
 	}
+
 	class GridView {
-		+void render()
+		+ void setTiles(const std::vector<TileView>&)
 	}
-	class InputManager {
-		+Direction getInput()
-	}
+
 	Game --> Grid
 	Grid --> Tile
 	Window --> GameObject
 	TileView --|> GameObject
 	GridView --|> GameObject
-	Window --> InputManager
 	Window --> GridView
 	GridView --> TileView
 ```
